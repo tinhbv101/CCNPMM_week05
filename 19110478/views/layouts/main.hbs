@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function editPost(id){
+            var formData = $("#myForm").serializeArray()
+            var body = {}
+            body['title'] = formData[0]['value']
+            body['content'] = formData[1]['value']
+            console.log(body)
+            $.ajax({
+                type: 'PUT',
+                url: 'http://localhost:5000/' + id,
+                data: JSON.stringify(body),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function(){console.log('done')}
+            })
+        }
+
+        function deletePost(id){
+            $.ajax({
+                type: 'DELETE',
+                url: 'http://localhost:5000/' + id,
+            })
+        }
+
+        function addPost(){
+            var formData = $("#addPostForm").serializeArray()
+            var body = {}
+            body['title'] = formData[0]['value']
+            body['content'] = formData[1]['value']
+            console.log(body)
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:5000',
+                data: JSON.stringify(body),
+                dataType: 'json',
+                contentType: 'application/json'
+            })
+        }
+
+        function addComment(postId){
+            var formData = $('#addCommentForm').serializeArray()
+            var body = {}
+            body['postId'] = postId
+            body['comment'] = {}
+            body['comment']['user'] = formData[0]['value']
+            body['comment']['comment'] = formData[1]['value']
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:5000/comment',
+                data: JSON.stringify(body),
+                dataType: 'json',
+                contentType: 'application/json'
+            })
+        }
+    </script>
+    {{{body}}}
+    
+</body>
+</html>

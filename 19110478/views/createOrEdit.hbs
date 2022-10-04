@@ -1,0 +1,32 @@
+<div class="w-100">
+    {{#if post}}
+    <form method="put" action="/{{post.id}}" id="myForm">
+        <div class="row">
+            <p class="col-12 text-center fw-b h3 bg-secondary mb-3 text-light p-1">Id: {{post.id}}</p>
+            <label for="title" class="col-3 text-center fw-b h3">Title:</label>
+            <input type="text" id="title" name="title" placeholder="Input title" class="col-8 form-control"
+                value="{{post.title}}">
+            <label for="content" class="col-3 text-center fw-b h3 mt-3">Content:</label>
+            <input type="text" id="content" name="content" placeholder="Input content" class="col-8 form-control mt-3"
+                value="{{post.content}}">
+        </div>
+        <div class="text-center mt-5">
+            <a href="/{{post.id}}" class="btn btn-primary btn-lg" onclick="editPost({{post.id}})">Edit Blog</a>
+        </div>
+    </form>
+    {{else}}
+        <form id="addPostForm">
+            <div class="row">
+                <label for="title" class="col-3 text-center fw-b h3">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Input title" class="col-8 form-control">
+                <label for="content" class="col-3 text-center fw-b h3 mt-3">Content:</label>
+                <input type="text" id="content" name="content" placeholder="Input content" class="col-8 form-control mt-3">
+            </div>
+            <div class="text-center mt-5">
+                <a href="/" class="btn btn-primary btn-lg" onclick="addPost()">Add New Post</a>
+            </div>
+        </form>
+    {{/if}}
+</div>
+
+

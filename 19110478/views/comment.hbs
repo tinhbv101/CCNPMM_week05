@@ -1,0 +1,11 @@
+<form id="addCommentForm">
+    <div class="row">
+        <label for="user" class="col-3 text-center fw-b h3">User:</label>
+        <input type="text" id="user" name="user" placeholder="Input user" class="col-8 form-control">
+        <label for="comment" class="col-3 text-center fw-b h3 mt-3">Comment:</label>
+        <input type="text" id="comment" name="comment" placeholder="Input comment" class="col-8 form-control mt-3">
+    </div>
+    <div class="text-center mt-5">
+        <a href="/{{postId}}" class="btn btn-primary btn-lg" onclick="addComment({{postId}})">Add comment</a>
+    </div>
+</form>
